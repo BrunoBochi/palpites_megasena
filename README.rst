@@ -18,4 +18,4 @@ Prometo encontrar 'bons números' mas não garanto que você ficará rico! :)
 Lembre-se do ditado que diz:
 "A loteria é o imposto cobrado às pessoas com pouco conhecimento em estatística."
 
-.. _`metaheurísticas` http://pt.wikipedia.org/wiki/Meta-heur%C3%ADstica
+.. _`metaheurísticas`: http://pt.wikipedia.org/wiki/Meta-heur%C3%ADstica
