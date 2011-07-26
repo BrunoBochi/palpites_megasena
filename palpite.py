@@ -1,4 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/env python
+# -*- coding: utf-8 - -*-
+
 from res_anteriores import dados
 import random
 import math

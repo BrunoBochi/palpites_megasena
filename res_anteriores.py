@@ -1,4 +1,5 @@
-#!/usr/bin/python
+#!/usr/bin/env python
+# -*- coding: utf-8 - -*-
 
 #url_resultados_caixa="http://www1.caixa.gov.br/loterias/_arquivos/loterias/D_megase.zip"
 

@@ -1,7 +1,7 @@
 Palpites
 ========
 
-Uma 'brincadeira' para encontrar apostas da megasena que teriam sido bem premiadas no passado, utilizando metaheurísticas de refinamento.
+Uma 'brincadeira' para encontrar apostas da megasena que teriam sido bem premiadas no passado, utilizando `metaheurísticas`_ de refinamento.
 Retorna uma aposta, e o número de acertos que ela teve no passado:
 Ex:
 	[18, 20, 24, 36, 53, 58] [1, 1, 1, 10, 112, 384]
@@ -17,3 +17,5 @@ Garantias
 Prometo encontrar 'bons números' mas não garanto que você ficará rico! :) 
 Lembre-se do ditado que diz:
 "A loteria é o imposto cobrado às pessoas com pouco conhecimento em estatística."
+
+.. _`metaheurísticas` http://pt.wikipedia.org/wiki/Meta-heur%C3%ADstica
