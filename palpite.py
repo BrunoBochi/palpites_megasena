@@ -5,7 +5,7 @@ from res_anteriores import dados
 import random
 import math
 
-def fo(palpite):
+def funcao_objetivo(palpite):
 	""" Funcao responsavel por avaliar a qualidade de um palpite """
 	resultados = [0,0,0,0,0,0]
 	for i in dados:
@@ -47,9 +47,9 @@ def solucao_inicial(n=6):
 		s.add(i)
 	return s
 	
-def sa(alfa,t,samax,s=solucao_inicial()):
+def simulated_annealing(alfa,t,samax,s=solucao_inicial()):
 	"""implementacao do simulated annealing para o problema de encontrar um bom palpite"""
-	vfo=fo(s)
+	vfo=funcao_objetivo(s)
 	s_star=s	
 	vfo_star=vfo
 	
@@ -58,7 +58,7 @@ def sa(alfa,t,samax,s=solucao_inicial()):
 		while i < samax:
 			i+=1
 			s_=move(s)
-			vfo_=fo(s_)
+			vfo_=funcao_objetivo(s_)
 			#print s, vfo
 			delta=vfo_-vfo			
 			if(delta>0):	#se houve melhora
@@ -73,9 +73,9 @@ def sa(alfa,t,samax,s=solucao_inicial()):
 		t*=alfa
 	return s_star			
 				
-def bt(tam_busca,tam_lista,btmax,s=solucao_inicial()):
+def busca_tabu(tam_busca,tam_lista,btmax,s=solucao_inicial()):
 	""" implementacao da busca tabu para o problema problema de encontrar um bom palpite"""
-	fo_s=fo(s)
+	fo_s=funcao_objetivo(s)
 	s_star=s
 	fo_s_star=fo_s
 	sem_melhora=0
@@ -84,14 +84,14 @@ def bt(tam_busca,tam_lista,btmax,s=solucao_inicial()):
 		sem_melhora+=1
 		i=0
 		melhor_vizinho=move(s)
-		fo_melhor_vizinho=fo(melhor_vizinho)
+		fo_melhor_vizinho=funcao_objetivo(melhor_vizinho)
 		while i < tam_busca:
 			i+=1
 			s_=move(s)
-			fo_s_=fo(s_)
+			fo_s_=funcao_objetivo(s_)
 			while ((s_-s) in T) and (fo_s_<fo_s_star):
 				s_=move(s)
-				fo_s_=fo(s_)
+				fo_s_=funcao_objetivo(s_)
 			if(fo_s_>fo_melhor_vizinho):
 				melhor_vizinho=s_
 				fo_melhor_vizinho=fo_s_
@@ -104,17 +104,6 @@ def bt(tam_busca,tam_lista,btmax,s=solucao_inicial()):
 			s_star = s
 			sem_melhora=0
 	return s_star
-
-def pathrelinking(s1,s2):
-	fo_alvo=fo(s2)
-	fo_s1=fo(s1)
-	if fo_s1 > fo_alvo: fo_alvo=fo_s1
-	diferenca = s1-s2
-	melhor=[]
-	while (len(diferenca)>0):
-		#tira um cara de s1		
-		diferenca = s1-s2
-	return melhor
 
 
 
@@ -136,7 +125,7 @@ if __name__ == "__main__":
 
 	for i in range(qtde):
 		s=solucao_inicial(tam_palpite)
-		s=bt(tam_busca=tam_busca,tam_lista=tam_lista,btmax=btmax,s=s)
+		s=busca_tabu(tam_busca=tam_busca,tam_lista=tam_lista,btmax=btmax,s=s)
 		resultados.append(s)
 
 	resultados.sort()
@@ -144,8 +133,8 @@ if __name__ == "__main__":
 	for i in resultados:
 		s_sorted=[x for x in i]	
 		s_sorted.sort()
-		print s_sorted, fo(i)
+		print s_sorted, funcao_objetivo(i)
 
-	#s=bt(tam_busca=tam_busca,tam_lista=tam_lista,btmax=btmax,s=s)
-	#s=sa(0.95, 100.0, 200,s)
+	#s=busca_tabu(tam_busca=tam_busca,tam_lista=tam_lista,btmax=btmax,s=s)
+	#s=simulated_annealing(0.95, 100.0, 200,s)
 	
